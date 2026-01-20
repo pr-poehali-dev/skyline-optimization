@@ -158,23 +158,6 @@ export function PricingSection() {
                 <p className="text-zinc-400 text-base font-medium">за {selectedPlan.period}</p>
               </div>
 
-              <ul className="space-y-2 mb-6 max-w-md mx-auto">
-                {selectedPlan.features.map((feature, featureIdx) => (
-                  <motion.li
-                    key={featureIdx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: featureIdx * 0.05, duration: 0.3, ease: "easeOut" }}
-                    className="flex items-center gap-3 text-zinc-200 font-medium bg-black/20 rounded-lg p-3 border border-white/5 text-sm"
-                  >
-                    <div className="w-5 h-5 rounded-md bg-gradient-to-br from-green-400/20 to-emerald-400/20 border border-green-400/40 flex items-center justify-center flex-shrink-0">
-                      <Icon name="Check" className="w-3 h-3 text-green-400" />
-                    </div>
-                    <span>{feature}</span>
-                  </motion.li>
-                ))}
-              </ul>
-
               <motion.button
                 onClick={() => setIsPurchaseModalOpen(true)}
                 whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}

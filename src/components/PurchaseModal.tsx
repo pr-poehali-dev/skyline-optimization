@@ -38,6 +38,7 @@ export function PurchaseModal({ isOpen, onClose, plan: initialPlan }: PurchaseMo
   const [selectedPlanIndex, setSelectedPlanIndex] = useState(initialPlan ? 
     plans.findIndex(p => p.name === initialPlan.name) : 0)
   const [email, setEmail] = useState("")
+  const [nickname, setNickname] = useState("")
   const [isProcessing, setIsProcessing] = useState(false)
 
   const selectedPlan = plans[selectedPlanIndex]
@@ -49,7 +50,7 @@ export function PurchaseModal({ isOpen, onClose, plan: initialPlan }: PurchaseMo
     await new Promise(resolve => setTimeout(resolve, 2000))
     
     setIsProcessing(false)
-    alert(`Спасибо! Ссылка на оплату отправлена на ${email}`)
+    alert(`Спасибо! Подписка для ${nickname} будет активирована после оплаты. Ссылка отправлена на ${email}`)
     onClose()
   }
 
@@ -158,6 +159,20 @@ export function PurchaseModal({ isOpen, onClose, plan: initialPlan }: PurchaseMo
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label htmlFor="nickname" className="block text-xs font-bold text-white mb-2">
+                        Minecraft никнейм
+                      </label>
+                      <input
+                        type="text"
+                        id="nickname"
+                        required
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
+                        placeholder="Steve"
+                        className="w-full px-4 py-3 bg-zinc-900/50 border-2 border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none transition-colors font-medium text-sm"
+                      />
+                    </div>
                     <div>
                       <label htmlFor="email" className="block text-xs font-bold text-white mb-2">
                         Email для активации

@@ -51,24 +51,29 @@ export function CTASection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.button
-                onClick={() => setPurchaseModalOpen(true)}
+              <motion.a
+                href="https://discord.gg/kage"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all shadow-lg shadow-purple-500/50 flex items-center justify-center gap-2"
               >
-                <Icon name="ShoppingCart" className="w-5 h-5" />
-                Купить подписку
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto px-8 py-4 border-2 border-zinc-700 text-white font-bold rounded-xl hover:bg-zinc-800 transition-all flex items-center justify-center gap-2"
-              >
                 <Icon name="MessageCircle" className="w-5 h-5" />
                 Связаться в Discord
-              </motion.button>
+              </motion.a>
+              
+              <motion.a
+                href="https://t.me/kage_support"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto px-8 py-4 border-2 border-purple-500/50 text-white font-bold rounded-xl hover:bg-purple-900/30 transition-all flex items-center justify-center gap-2"
+              >
+                <Icon name="Send" className="w-5 h-5" />
+                Написать в Telegram
+              </motion.a>
             </div>
 
             <div className="flex items-center justify-center gap-8 mt-10 text-zinc-400 text-sm">
