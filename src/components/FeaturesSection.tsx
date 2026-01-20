@@ -107,9 +107,7 @@ export function FeaturesSection() {
               детали
             </span>
           </h2>
-          <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">
-            🐺 Невидимая защита от античитов в каждой функции
-          </p>
+          <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">Невидимая защита от античитов в каждой функции</p>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
