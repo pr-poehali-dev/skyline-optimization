@@ -33,10 +33,10 @@ const securityFeatures = [
 ]
 
 const stats = [
-  { value: "0", label: "банов за месяц", icon: "Ban", emoji: "✅" },
-  { value: "24/7", label: "обновления защиты", icon: "RefreshCw", emoji: "🔄" },
-  { value: "5000+", label: "активных пользователей", icon: "Users", emoji: "👥" },
-  { value: "99.9%", label: "uptime серверов", icon: "Server", emoji: "📊" }
+  { value: "0", label: "банов за месяц", icon: "Ban" },
+  { value: "24/7", label: "обновления защиты", icon: "RefreshCw" },
+  { value: "5000+", label: "активных пользователей", icon: "Users" },
+  { value: "99.9%", label: "uptime серверов", icon: "Server" }
 ]
 
 export function SecuritySection() {
@@ -61,7 +61,7 @@ export function SecuritySection() {
               alt="Wolf" 
               className="w-6 h-6 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" 
             />
-            <span className="text-purple-300 font-bold">🔒 Невидимая защита</span>
+            <span className="text-purple-300 font-bold">Невидимая защита</span>
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
@@ -124,7 +124,6 @@ export function SecuritySection() {
               className="relative text-center p-8 bg-gradient-to-br from-zinc-900/80 to-purple-900/20 backdrop-blur-xl border-2 border-purple-500/30 rounded-2xl shadow-xl hover:shadow-purple-500/50 overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="">{stat.emoji}</div>
               <div className="flex justify-center mb-4 relative z-10">
                 <motion.div 
                   whileHover={{ rotate: 360, transition: { duration: 0.4 } }}

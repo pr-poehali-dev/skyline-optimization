@@ -94,7 +94,11 @@ export function FeaturesSection() {
             whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
             className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-full px-6 py-3 mb-6"
           >
-            <span className="text-3xl">⚡</span>
+            <img 
+              src="https://cdn.poehali.dev/files/e983c995-d981-4b7a-b0ff-0fc5f17314b9.png" 
+              alt="KAGE" 
+              className="w-6 h-6 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" 
+            />
             <span className="text-purple-300 font-bold">Полный арсенал</span>
           </motion.div>
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
@@ -106,6 +110,18 @@ export function FeaturesSection() {
           <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">
             🐺 Невидимая защита от античитов в каждой функции
           </p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
+            className="mt-8 flex justify-center"
+          >
+            <a href="#combat" className="flex flex-col items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors">
+              <span className="text-sm font-medium">Листай вниз</span>
+              <Icon name="ChevronDown" className="w-6 h-6 animate-bounce" />
+            </a>
+          </motion.div>
         </motion.div>
 
         <motion.div 

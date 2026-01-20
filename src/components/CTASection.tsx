@@ -1,8 +1,20 @@
 import { motion } from "framer-motion"
+import { useState } from "react"
 import Icon from "@/components/ui/icon"
+import { PurchaseModal } from "./PurchaseModal"
+
+const defaultPlan = {
+  name: "1 Неделя",
+  price: "799",
+  period: "неделя",
+  description: "Оптимальный выбор"
+}
 
 export function CTASection() {
+  const [purchaseModalOpen, setPurchaseModalOpen] = useState(false)
+
   return (
+    <>
     <section className="relative py-32 px-6 overflow-hidden" style={{ backgroundColor: "#09090B" }}>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-gradient-to-r from-purple-600/20 via-pink-600/20 to-blue-600/20 rounded-full blur-3xl" />
@@ -40,6 +52,7 @@ export function CTASection() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.button
+                onClick={() => setPurchaseModalOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all shadow-lg shadow-purple-500/50 flex items-center justify-center gap-2"
@@ -74,6 +87,9 @@ export function CTASection() {
           <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-600/30 rounded-full blur-3xl" />
         </motion.div>
       </div>
+
+      <PurchaseModal isOpen={purchaseModalOpen} onClose={() => setPurchaseModalOpen(false)} plan={defaultPlan} />
     </section>
+    </>
   )
 }

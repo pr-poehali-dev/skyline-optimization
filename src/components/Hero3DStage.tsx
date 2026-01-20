@@ -7,9 +7,18 @@ import { SecuritySection } from "./SecuritySection"
 import { PricingSection } from "./PricingSection"
 import { CTASection } from "./CTASection"
 import { Footer } from "./Footer"
+import { PurchaseModal } from "./PurchaseModal"
+
+const defaultPlan = {
+  name: "1 Неделя",
+  price: "799",
+  period: "неделя",
+  description: "Оптимальный выбор"
+}
 
 export function Hero3DStage() {
   const [yOffset, setYOffset] = useState(0)
+  const [purchaseModalOpen, setPurchaseModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,6 +128,7 @@ export function Hero3DStage() {
                 className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6"
               >
                 <motion.button
+                  onClick={() => setPurchaseModalOpen(true)}
                   whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(168, 85, 247, 0.6)" }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black text-lg rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all shadow-lg shadow-purple-500/50 relative overflow-hidden group"
@@ -212,6 +222,8 @@ export function Hero3DStage() {
           <Footer />
         </div>
       </section>
+
+      <PurchaseModal isOpen={purchaseModalOpen} onClose={() => setPurchaseModalOpen(false)} plan={defaultPlan} />
     </>
   )
 }

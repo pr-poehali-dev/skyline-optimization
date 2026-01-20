@@ -75,7 +75,11 @@ export function PricingSection() {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/50 rounded-full px-6 py-3 mb-6">
-            <span className="text-3xl">💰</span>
+            <img 
+              src="https://cdn.poehali.dev/files/e983c995-d981-4b7a-b0ff-0fc5f17314b9.png" 
+              alt="KAGE" 
+              className="w-6 h-6 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" 
+            />
             <span className="text-purple-300 font-bold">Тарифы</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6">
