@@ -67,6 +67,7 @@ export function PricingSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/50 rounded-full px-6 py-3 mb-6">
@@ -92,7 +93,7 @@ export function PricingSection() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -12, scale: 1.03 }}
+              whileHover={{ y: -12, scale: 1.03, transition: { duration: 0.2 } }}
               className={`relative rounded-2xl overflow-hidden ${
                 plan.popular ? 'md:-mt-4 md:mb-4' : ''
               }`}
@@ -135,9 +136,9 @@ export function PricingSection() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 + featureIdx * 0.08 }}
-                      whileHover={{ x: 5 }}
-                      className="flex items-center gap-4 text-zinc-200 font-medium bg-black/20 rounded-xl p-3 border border-white/5 hover:border-purple-500/30 transition-all"
+                      transition={{ delay: idx * 0.1 + featureIdx * 0.05, duration: 0.3 }}
+                      whileHover={{ x: 5, transition: { duration: 0.15 } }}
+                      className="flex items-center gap-4 text-zinc-200 font-medium bg-black/20 rounded-xl p-3 border border-white/5 hover:border-purple-500/30"
                     >
                       <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-green-400/20 to-emerald-400/20 border border-green-400/40 flex items-center justify-center flex-shrink-0">
                         <Icon name="Check" className="w-4 h-4 text-green-400" />
@@ -148,17 +149,17 @@ export function PricingSection() {
                 </ul>
 
                 <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: plan.popular ? "0 0 40px rgba(168, 85, 247, 0.8)" : "0 0 20px rgba(100, 100, 100, 0.5)" }}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-full py-5 rounded-2xl font-black text-lg text-white transition-all relative overflow-hidden group ${
+                  className={`w-full py-5 rounded-2xl font-black text-lg text-white relative overflow-hidden group ${
                     plan.popular
-                      ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 shadow-2xl shadow-purple-500/60'
-                      : 'bg-gradient-to-r from-zinc-800 to-zinc-700 border-2 border-zinc-600'
-                  }`}
+                      ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 shadow-2xl shadow-purple-500/60 hover:shadow-purple-500/80'
+                      : 'bg-gradient-to-r from-zinc-800 to-zinc-700 border-2 border-zinc-600 hover:shadow-zinc-500/50'
+                  } transition-shadow duration-200`}
                 >
                   <span className="relative z-10">🛒 Купить сейчас</span>
                   {plan.popular && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   )}
                 </motion.button>
               </div>
@@ -170,6 +171,7 @@ export function PricingSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="text-center mt-16 bg-gradient-to-r from-zinc-900/50 to-purple-900/30 border border-purple-500/30 rounded-2xl p-6 max-w-3xl mx-auto"
         >
           <div className="flex items-center justify-center gap-8 text-zinc-300 font-medium">

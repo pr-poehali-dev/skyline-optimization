@@ -52,6 +52,7 @@ export function SecuritySection() {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/50 rounded-full px-6 py-3 mb-6 backdrop-blur-sm">
@@ -80,9 +81,9 @@ export function SecuritySection() {
               initial={{ opacity: 0, y: 30, rotateX: 20 }}
               whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.08, y: -10, rotateZ: 2 }}
-              className={`relative bg-gradient-to-br ${feature.color} backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 overflow-hidden group cursor-pointer shadow-2xl hover:shadow-purple-500/50 transition-all duration-500`}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              whileHover={{ scale: 1.08, y: -10, rotateZ: 2, transition: { duration: 0.2 } }}
+              className={`relative bg-gradient-to-br ${feature.color} backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 overflow-hidden group cursor-pointer shadow-2xl hover:shadow-purple-500/50`}
               style={{ transformStyle: "preserve-3d" }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -90,8 +91,7 @@ export function SecuritySection() {
               
               <div className="relative z-10">
                 <motion.div 
-                  whileHover={{ rotate: 360, scale: 1.2 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ rotate: 360, scale: 1.2, transition: { duration: 0.4 } }}
                   className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border-2 border-white/20 flex items-center justify-center mb-6 shadow-lg"
                 >
                   <Icon name={feature.icon} className="w-8 h-8 text-white" />
@@ -110,6 +110,7 @@ export function SecuritySection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
         >
           {stats.map((stat, idx) => (
@@ -118,16 +119,15 @@ export function SecuritySection() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.15, rotateY: 10 }}
-              className="relative text-center p-8 bg-gradient-to-br from-zinc-900/80 to-purple-900/20 backdrop-blur-xl border-2 border-purple-500/30 rounded-2xl shadow-xl hover:shadow-purple-500/50 transition-all overflow-hidden group"
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              whileHover={{ scale: 1.15, rotateY: 10, transition: { duration: 0.2 } }}
+              className="relative text-center p-8 bg-gradient-to-br from-zinc-900/80 to-purple-900/20 backdrop-blur-xl border-2 border-purple-500/30 rounded-2xl shadow-xl hover:shadow-purple-500/50 overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="absolute top-2 right-2 text-3xl">{stat.emoji}</div>
               <div className="flex justify-center mb-4 relative z-10">
                 <motion.div 
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                  whileHover={{ rotate: 360, transition: { duration: 0.4 } }}
                   className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-2 border-purple-400/40 flex items-center justify-center shadow-lg"
                 >
                   <Icon name={stat.icon} className="w-7 h-7 text-purple-300" />
