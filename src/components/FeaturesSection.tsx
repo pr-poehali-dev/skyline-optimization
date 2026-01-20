@@ -51,6 +51,38 @@ const allFeatures = [
     borderColor: "border-red-400/50"
   },
   { 
+    name: "Critical Hits", 
+    description: "Автоматические критические удары", 
+    icon: "Zap",
+    category: "Combat",
+    color: "from-red-500/30 to-orange-500/30",
+    borderColor: "border-red-400/50"
+  },
+  { 
+    name: "Auto Armor", 
+    description: "Автоматическое надевание брони", 
+    icon: "ShieldAlert",
+    category: "Combat",
+    color: "from-red-500/30 to-orange-500/30",
+    borderColor: "border-red-400/50"
+  },
+  { 
+    name: "Auto Potion", 
+    description: "Автоматическое использование зелий", 
+    icon: "Droplet",
+    category: "Combat",
+    color: "from-red-500/30 to-orange-500/30",
+    borderColor: "border-red-400/50"
+  },
+  { 
+    name: "Auto Totem", 
+    description: "Автоматическое использование тотема", 
+    icon: "Heart",
+    category: "Combat",
+    color: "from-red-500/30 to-orange-500/30",
+    borderColor: "border-red-400/50"
+  },
+  { 
     name: "ESP / Wallhack", 
     description: "Видимость игроков сквозь стены", 
     icon: "Scan",
@@ -94,6 +126,22 @@ const allFeatures = [
     name: "Nametags", 
     description: "Отображение имён и здоровья игроков", 
     icon: "Tag",
+    category: "Visuals",
+    color: "from-purple-500/30 to-pink-500/30",
+    borderColor: "border-purple-400/50"
+  },
+  { 
+    name: "Chams", 
+    description: "Подсветка игроков цветом", 
+    icon: "Palette",
+    category: "Visuals",
+    color: "from-purple-500/30 to-pink-500/30",
+    borderColor: "border-purple-400/50"
+  },
+  { 
+    name: "Radar", 
+    description: "Мини-карта с противниками", 
+    icon: "Radar",
     category: "Visuals",
     color: "from-purple-500/30 to-pink-500/30",
     borderColor: "border-purple-400/50"
@@ -147,6 +195,70 @@ const allFeatures = [
     borderColor: "border-blue-400/50"
   },
   { 
+    name: "NoFall", 
+    description: "Защита от урона при падении", 
+    icon: "ArrowDown",
+    category: "Movement",
+    color: "from-blue-500/30 to-cyan-500/30",
+    borderColor: "border-blue-400/50"
+  },
+  { 
+    name: "Long Jump", 
+    description: "Увеличенная дальность прыжка", 
+    icon: "ArrowBigRight",
+    category: "Movement",
+    color: "from-blue-500/30 to-cyan-500/30",
+    borderColor: "border-blue-400/50"
+  },
+  { 
+    name: "Inventory Walk", 
+    description: "Движение с открытым инвентарём", 
+    icon: "Backpack",
+    category: "Movement",
+    color: "from-blue-500/30 to-cyan-500/30",
+    borderColor: "border-blue-400/50"
+  },
+  { 
+    name: "No Slow", 
+    description: "Отключение замедления", 
+    icon: "FastForward",
+    category: "Movement",
+    color: "from-blue-500/30 to-cyan-500/30",
+    borderColor: "border-blue-400/50"
+  },
+  { 
+    name: "Scaffold", 
+    description: "Автоматическая постройка мостов", 
+    icon: "Blocks",
+    category: "World",
+    color: "from-green-500/30 to-emerald-500/30",
+    borderColor: "border-green-400/50"
+  },
+  { 
+    name: "Auto Mine", 
+    description: "Автоматическая добыча ресурсов", 
+    icon: "Pickaxe",
+    category: "World",
+    color: "from-green-500/30 to-emerald-500/30",
+    borderColor: "border-green-400/50"
+  },
+  { 
+    name: "Nuker", 
+    description: "Быстрое разрушение блоков вокруг", 
+    icon: "Bomb",
+    category: "World",
+    color: "from-green-500/30 to-emerald-500/30",
+    borderColor: "border-green-400/50"
+  },
+  { 
+    name: "Auto Tool", 
+    description: "Автовыбор лучшего инструмента", 
+    icon: "Wrench",
+    category: "World",
+    color: "from-green-500/30 to-emerald-500/30",
+    borderColor: "border-green-400/50"
+  },
+  { 
     name: "AntiCheat Bypass", 
     description: "Защита от обнаружения", 
     icon: "ShieldCheck",
@@ -195,102 +307,6 @@ const allFeatures = [
     borderColor: "border-zinc-400/50"
   },
   { 
-    name: "Critical Hits", 
-    description: "Автоматические критические удары", 
-    icon: "Zap",
-    category: "Combat",
-    color: "from-red-500/30 to-orange-500/30",
-    borderColor: "border-red-400/50"
-  },
-  { 
-    name: "Auto Armor", 
-    description: "Автоматическое надевание брони", 
-    icon: "ShieldAlert",
-    category: "Combat",
-    color: "from-red-500/30 to-orange-500/30",
-    borderColor: "border-red-400/50"
-  },
-  { 
-    name: "Auto Potion", 
-    description: "Автоматическое использование зелий", 
-    icon: "Droplet",
-    category: "Combat",
-    color: "from-red-500/30 to-orange-500/30",
-    borderColor: "border-red-400/50"
-  },
-  { 
-    name: "Chams", 
-    description: "Подсветка игроков цветом", 
-    icon: "Palette",
-    category: "Visuals",
-    color: "from-purple-500/30 to-pink-500/30",
-    borderColor: "border-purple-400/50"
-  },
-  { 
-    name: "Radar", 
-    description: "Мини-карта с противниками", 
-    icon: "Radar",
-    category: "Visuals",
-    color: "from-purple-500/30 to-pink-500/30",
-    borderColor: "border-purple-400/50"
-  },
-  { 
-    name: "NoFall", 
-    description: "Защита от урона при падении", 
-    icon: "ArrowDown",
-    category: "Movement",
-    color: "from-blue-500/30 to-cyan-500/30",
-    borderColor: "border-blue-400/50"
-  },
-  { 
-    name: "Long Jump", 
-    description: "Увеличенная дальность прыжка", 
-    icon: "ArrowBigRight",
-    category: "Movement",
-    color: "from-blue-500/30 to-cyan-500/30",
-    borderColor: "border-blue-400/50"
-  },
-  { 
-    name: "Scaffold", 
-    description: "Автоматическая постройка мостов", 
-    icon: "Blocks",
-    category: "World",
-    color: "from-green-500/30 to-emerald-500/30",
-    borderColor: "border-green-400/50"
-  },
-  { 
-    name: "Auto Mine", 
-    description: "Автоматическая добыча ресурсов", 
-    icon: "Pickaxe",
-    category: "World",
-    color: "from-green-500/30 to-emerald-500/30",
-    borderColor: "border-green-400/50"
-  },
-  { 
-    name: "Nuker", 
-    description: "Быстрое разрушение блоков вокруг", 
-    icon: "Bomb",
-    category: "World",
-    color: "from-green-500/30 to-emerald-500/30",
-    borderColor: "border-green-400/50"
-  },
-  { 
-    name: "Auto Tool", 
-    description: "Автовыбор лучшего инструмента", 
-    icon: "Wrench",
-    category: "World",
-    color: "from-green-500/30 to-emerald-500/30",
-    borderColor: "border-green-400/50"
-  },
-  { 
-    name: "Auto Totem", 
-    description: "Автоматическое использование тотема", 
-    icon: "Heart",
-    category: "Combat",
-    color: "from-red-500/30 to-orange-500/30",
-    borderColor: "border-red-400/50"
-  },
-  { 
     name: "Anti Void", 
     description: "Защита от падения в пустоту", 
     icon: "CircleSlash",
@@ -313,24 +329,19 @@ const allFeatures = [
     category: "Interface",
     color: "from-yellow-500/30 to-amber-500/30",
     borderColor: "border-yellow-400/50"
-  },
-  { 
-    name: "Inventory Walk", 
-    description: "Движение с открытым инвентарём", 
-    icon: "Backpack",
-    category: "Movement",
-    color: "from-blue-500/30 to-cyan-500/30",
-    borderColor: "border-blue-400/50"
-  },
-  { 
-    name: "No Slow", 
-    description: "Отключение замедления", 
-    icon: "FastForward",
-    category: "Movement",
-    color: "from-blue-500/30 to-cyan-500/30",
-    borderColor: "border-blue-400/50"
   }
 ]
+
+const categoryInfo = {
+  "Combat": { emoji: "⚔️", title: "Боевые функции" },
+  "Visuals": { emoji: "👁️", title: "Визуальные функции" },
+  "Movement": { emoji: "⚡", title: "Функции передвижения" },
+  "World": { emoji: "🌍", title: "Взаимодействие с миром" },
+  "Stealth": { emoji: "🥷", title: "Скрытность" },
+  "Interface": { emoji: "⚙️", title: "Интерфейс" }
+}
+
+const categories = ["Combat", "Visuals", "Movement", "World", "Stealth", "Interface"]
 
 export function FeaturesSection() {
   return (
@@ -367,18 +378,6 @@ export function FeaturesSection() {
             </span>
           </h2>
           <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">Прокрути список и изучи все возможности</p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
-            className="mt-8 flex justify-center"
-          >
-            <div className="flex flex-col items-center gap-2 text-purple-400">
-              <span className="text-sm font-medium">Листай вниз</span>
-              <Icon name="ChevronDown" className="w-6 h-6 animate-bounce" />
-            </div>
-          </motion.div>
         </motion.div>
 
         <motion.div 
@@ -389,50 +388,65 @@ export function FeaturesSection() {
           className="max-w-4xl mx-auto"
         >
           <div 
-            className="h-[600px] overflow-y-auto pr-4 space-y-3 scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-zinc-900/50"
+            className="h-[600px] overflow-y-auto pr-4 space-y-8 scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-zinc-900/50"
             style={{
               scrollbarWidth: 'thin',
               scrollbarColor: '#9333ea #18181b'
             }}
           >
-            {allFeatures.map((feature, idx) => (
-              <motion.div
-                key={feature.name}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: idx * 0.02 }}
-                whileHover={{ x: 8, scale: 1.02, transition: { duration: 0.2 } }}
-                className={`relative bg-gradient-to-r ${feature.color} backdrop-blur-xl border-2 ${feature.borderColor} rounded-2xl p-5 overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="relative z-10 flex items-center gap-4">
+            {categories.map((category) => {
+              const categoryFeatures = allFeatures.filter(f => f.category === category)
+              const info = categoryInfo[category]
+              
+              return (
+                <div key={category} className="space-y-3">
                   <motion.div 
-                    whileHover={{ rotate: 360, scale: 1.1, transition: { duration: 0.4 } }}
-                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} border-2 ${feature.borderColor} flex items-center justify-center shadow-lg flex-shrink-0`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 mb-4"
                   >
-                    <Icon name={feature.icon} className="w-7 h-7 text-white" />
+                    <span className="text-3xl">{info.emoji}</span>
+                    <h3 className="text-2xl font-black text-white">{info.title}</h3>
+                    <div className="flex-1 h-px bg-gradient-to-r from-purple-500/50 to-transparent" />
                   </motion.div>
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-white font-black text-lg truncate">
-                        {feature.name}
-                      </h3>
-                      <span className="px-2 py-0.5 bg-white/10 rounded-md text-xs font-bold text-zinc-300 whitespace-nowrap">
-                        {feature.category}
-                      </span>
-                    </div>
-                    <p className="text-zinc-300 text-sm font-medium line-clamp-1">
-                      {feature.description}
-                    </p>
-                  </div>
+                  {categoryFeatures.map((feature, idx) => (
+                    <motion.div
+                      key={feature.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.3, delay: idx * 0.02 }}
+                      whileHover={{ x: 8, scale: 1.02, transition: { duration: 0.2 } }}
+                      className={`relative bg-gradient-to-r ${feature.color} backdrop-blur-xl border-2 ${feature.borderColor} rounded-2xl p-5 overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl`}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      
+                      <div className="relative z-10 flex items-center gap-4">
+                        <motion.div 
+                          whileHover={{ rotate: 360, scale: 1.1, transition: { duration: 0.4 } }}
+                          className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} border-2 ${feature.borderColor} flex items-center justify-center shadow-lg flex-shrink-0`}
+                        >
+                          <Icon name={feature.icon} className="w-7 h-7 text-white" />
+                        </motion.div>
 
-                  <Icon name="ChevronRight" className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-white font-black text-lg truncate mb-1">
+                            {feature.name}
+                          </h4>
+                          <p className="text-zinc-300 text-sm font-medium line-clamp-1">
+                            {feature.description}
+                          </p>
+                        </div>
+
+                        <Icon name="ChevronRight" className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all flex-shrink-0" />
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
+              )
+            })}
           </div>
 
           <div className="mt-6 text-center">
