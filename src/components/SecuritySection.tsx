@@ -41,7 +41,7 @@ const stats = [
 
 export function SecuritySection() {
   return (
-    <section className="relative py-32 overflow-hidden" style={{ backgroundColor: "#09090B" }}>
+    <section id="security" className="relative py-32 overflow-hidden" style={{ backgroundColor: "#09090B" }}>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />

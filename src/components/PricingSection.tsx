@@ -5,59 +5,53 @@ import { PurchaseModal } from "./PurchaseModal"
 
 const plans = [
   {
-    name: "1 День",
-    price: "199",
-    period: "день",
-    description: "Попробуй все возможности",
+    name: "1 Неделя",
+    price: 799,
+    period: "неделя",
+    description: "Оптимальный выбор",
     features: [
       "Все функции",
       "Обновления",
       "Поддержка 24/7",
       "Stealth Mode"
-    ],
-    popular: false,
-    color: "from-zinc-800 to-zinc-900",
-    borderColor: "border-zinc-700"
+    ]
   },
   {
-    name: "1 Неделя",
-    price: "799",
-    period: "неделя",
-    description: "Оптимальный выбор",
+    name: "2 Недели",
+    price: 1499,
+    period: "2 недели",
+    description: "Выгодное предложение",
     features: [
       "Все функции",
       "Приоритетные обновления",
       "VIP поддержка 24/7",
       "Stream Proof",
-      "Custom конфиги",
-      "Доступ к бета-версиям"
+      "Custom конфиги"
     ],
-    popular: true,
-    color: "from-purple-600 to-pink-600",
-    borderColor: "border-purple-500"
+    discount: "Скидка 6%"
   },
   {
     name: "1 Месяц",
-    price: "1999",
+    price: 1999,
     period: "месяц",
     description: "Максимальная выгода",
     features: [
       "Все функции",
-      "Ранний доступ к обновлениям",
+      "Ранний доступ",
       "Персональная поддержка",
       "Premium конфиги",
-      "Приоритет в очереди",
       "Эксклюзивные функции",
-      "Скидка на продление 20%"
+      "Скидка на продление"
     ],
-    popular: false,
-    color: "from-blue-600 to-cyan-600",
-    borderColor: "border-blue-500"
+    discount: "Скидка 20%"
   }
 ]
 
 export function PricingSection() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof plans[0] | null>(null)
+  const [selectedPlanIndex, setSelectedPlanIndex] = useState(1)
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false)
+
+  const selectedPlan = plans[selectedPlanIndex]
 
   return (
     <section id="pricing" className="relative py-32 overflow-hidden" style={{ backgroundColor: "#09090B" }}>
@@ -89,91 +83,112 @@ export function PricingSection() {
             </span>
           </h2>
           <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">
-            ⚡ Мгновенная активация после оплаты. Без скрытых платежей.
+            Мгновенная активация после оплаты. Без скрытых платежей.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan, idx) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 40, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -12, scale: 1.03, transition: { duration: 0.2 } }}
-              className={`relative rounded-2xl overflow-hidden ${
-                plan.popular ? 'md:-mt-4 md:mb-4' : ''
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20">
-                  <motion.div 
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 text-white text-sm font-black px-6 py-2 rounded-full shadow-2xl shadow-purple-500/50 border-2 border-white/30"
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-8">
+            <div className="relative">
+              <input
+                type="range"
+                min="0"
+                max="2"
+                value={selectedPlanIndex}
+                onChange={(e) => setSelectedPlanIndex(Number(e.target.value))}
+                className="w-full h-3 bg-zinc-800 rounded-lg appearance-none cursor-pointer slider"
+                style={{
+                  background: `linear-gradient(to right, #9333ea 0%, #9333ea ${(selectedPlanIndex / 2) * 100}%, #27272a ${(selectedPlanIndex / 2) * 100}%, #27272a 100%)`
+                }}
+              />
+              <div className="flex justify-between mt-4">
+                {plans.map((plan, idx) => (
+                  <button
+                    key={plan.name}
+                    onClick={() => setSelectedPlanIndex(idx)}
+                    className={`flex flex-col items-center transition-all ${
+                      selectedPlanIndex === idx ? 'scale-110' : 'scale-90 opacity-50'
+                    }`}
                   >
-                    ⭐ ПОПУЛЯРНЮЙ ⭐
-                  </motion.div>
+                    <div className={`w-5 h-5 rounded-full border-2 mb-2 ${
+                      selectedPlanIndex === idx
+                        ? 'border-purple-400 bg-purple-500 shadow-lg shadow-purple-500/50'
+                        : 'border-zinc-600 bg-zinc-800'
+                    }`} />
+                    <span className={`text-sm font-bold ${
+                      selectedPlanIndex === idx ? 'text-white' : 'text-zinc-500'
+                    }`}>
+                      {plan.name === "1 Неделя" ? "Неделя" : plan.name === "2 Недели" ? "Две недели" : "Месяц"}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <motion.div
+            key={selectedPlanIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="relative rounded-3xl overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20" />
+            <div className="absolute inset-0 border-2 border-purple-500/50 rounded-3xl shadow-2xl shadow-purple-500/50" />
+            
+            <div className="relative p-10 bg-zinc-900/70 backdrop-blur-xl">
+              {selectedPlan.discount && (
+                <div className="absolute top-6 right-6 bg-green-500/20 border border-green-400/50 text-green-300 text-sm font-bold px-4 py-2 rounded-xl">
+                  {selectedPlan.discount}
                 </div>
               )}
 
-              <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} ${plan.popular ? 'opacity-20' : 'opacity-10'}`} />
-              <div className={`absolute inset-0 border-3 ${plan.borderColor} rounded-3xl ${plan.popular ? 'shadow-2xl shadow-purple-500/50' : ''}`} />
-              
-              <div className="relative p-10 bg-zinc-900/70 backdrop-blur-xl h-full flex flex-col">
-                <div className="mb-8">
-                  <h3 className="text-3xl font-black text-white mb-3">{plan.name}</h3>
-                  <p className="text-zinc-300 font-medium">🔥 {plan.description}</p>
-                </div>
-
-                <div className="mb-10">
-                  <div className="flex items-baseline gap-2">
-                    <span className={`text-6xl font-black ${plan.popular ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300' : 'text-white'}`}>
-                      {plan.price}
-                    </span>
-                    <span className="text-zinc-300 text-2xl font-bold">₽</span>
-                  </div>
-                  <p className="text-zinc-400 text-lg font-medium mt-2">🕒 за {plan.period}</p>
-                </div>
-
-                <ul className="space-y-4 mb-10 flex-grow">
-                  {plan.features.map((feature, featureIdx) => (
-                    <motion.li
-                      key={featureIdx}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 + featureIdx * 0.05, duration: 0.3 }}
-                      whileHover={{ x: 5, transition: { duration: 0.15 } }}
-                      className="flex items-center gap-4 text-zinc-200 font-medium bg-black/20 rounded-xl p-3 border border-white/5 hover:border-purple-500/30"
-                    >
-                      <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-green-400/20 to-emerald-400/20 border border-green-400/40 flex items-center justify-center flex-shrink-0">
-                        <Icon name="Check" className="w-4 h-4 text-green-400" />
-                      </div>
-                      <span>{feature}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-
-                <motion.button
-                  onClick={() => setSelectedPlan(plan)}
-                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-full py-5 rounded-2xl font-black text-lg text-white relative overflow-hidden group ${
-                    plan.popular
-                      ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 shadow-2xl shadow-purple-500/60 hover:shadow-purple-500/80'
-                      : 'bg-gradient-to-r from-zinc-800 to-zinc-700 border-2 border-zinc-600 hover:shadow-zinc-500/50'
-                  } transition-shadow duration-200`}
-                >
-                  <span className="relative z-10">🛒 Купить сейчас</span>
-                  {plan.popular && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                  )}
-                </motion.button>
+              <div className="text-center mb-8">
+                <h3 className="text-4xl font-black text-white mb-3">{selectedPlan.name}</h3>
+                <p className="text-zinc-300 font-medium text-lg">{selectedPlan.description}</p>
               </div>
-            </motion.div>
-          ))}
+
+              <div className="text-center mb-10">
+                <div className="flex items-baseline justify-center gap-2 mb-2">
+                  <span className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">
+                    {selectedPlan.price}
+                  </span>
+                  <span className="text-zinc-300 text-3xl font-bold">₽</span>
+                </div>
+                <p className="text-zinc-400 text-xl font-medium">за {selectedPlan.period}</p>
+              </div>
+
+              <ul className="space-y-4 mb-10 max-w-md mx-auto">
+                {selectedPlan.features.map((feature, featureIdx) => (
+                  <motion.li
+                    key={featureIdx}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: featureIdx * 0.1, duration: 0.3 }}
+                    className="flex items-center gap-4 text-zinc-200 font-medium bg-black/20 rounded-xl p-4 border border-white/5"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-green-400/20 to-emerald-400/20 border border-green-400/40 flex items-center justify-center flex-shrink-0">
+                      <Icon name="Check" className="w-5 h-5 text-green-400" />
+                    </div>
+                    <span>{feature}</span>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <motion.button
+                onClick={() => setIsPurchaseModalOpen(true)}
+                whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.97 }}
+                className="w-full py-6 rounded-2xl font-black text-xl text-white bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 shadow-2xl shadow-purple-500/60 hover:shadow-purple-500/80 transition-shadow duration-200 relative overflow-hidden group"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <Icon name="ShoppingCart" className="w-6 h-6" />
+                  Купить сейчас
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              </motion.button>
+            </div>
+          </motion.div>
         </div>
 
         <motion.div
@@ -183,7 +198,7 @@ export function PricingSection() {
           transition={{ duration: 0.5 }}
           className="text-center mt-16 bg-gradient-to-r from-zinc-900/50 to-purple-900/30 border border-purple-500/30 rounded-2xl p-6 max-w-3xl mx-auto"
         >
-          <div className="flex items-center justify-center gap-8 text-zinc-300 font-medium">
+          <div className="flex items-center justify-center gap-8 text-zinc-300 font-medium flex-wrap">
             <div className="flex items-center gap-2">
               <Icon name="Shield" className="w-6 h-6 text-green-400" />
               Безопасная оплата
@@ -193,17 +208,22 @@ export function PricingSection() {
               Активация 1 мин
             </div>
             <div className="flex items-center gap-2">
-              <Icon name="RefreshCw" className="w-6 h-6 text-blue-400" />
-              Возврат 24ч
+              <Icon name="Lock" className="w-6 h-6 text-blue-400" />
+              SSL шифрование
             </div>
           </div>
         </motion.div>
       </div>
 
       <PurchaseModal
-        isOpen={!!selectedPlan}
-        onClose={() => setSelectedPlan(null)}
-        plan={selectedPlan || plans[0]}
+        isOpen={isPurchaseModalOpen}
+        onClose={() => setIsPurchaseModalOpen(false)}
+        plan={{
+          name: selectedPlan.name,
+          price: String(selectedPlan.price),
+          period: selectedPlan.period,
+          description: selectedPlan.description
+        }}
       />
     </section>
   )

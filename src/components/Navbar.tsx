@@ -27,17 +27,38 @@ export function Navbar() {
               <span className="text-white font-bold text-xl tracking-wider bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">KAGE</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium">
+              <a 
+                href="#features" 
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium cursor-pointer"
+              >
                 Функции
               </a>
-              <a href="#pricing" className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium">
+              <a 
+                href="#security" 
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('security')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium cursor-pointer"
+              >
+                Защита
+              </a>
+              <a 
+                href="#pricing" 
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium cursor-pointer"
+              >
                 Тарифы
               </a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium">
+              <a href="https://discord.gg/kage" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium">
                 Discord
-              </a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-purple-400 transition-colors font-medium">
-                FAQ
               </a>
             </div>
             <div className="flex items-center gap-4">
