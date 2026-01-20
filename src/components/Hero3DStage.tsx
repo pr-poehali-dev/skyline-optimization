@@ -37,7 +37,7 @@ export function Hero3DStage() {
       <section className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "#09090B" }}>
         <Navbar />
 
-        {/* Subtle glow */}
+        {/* Japanese-inspired glow */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -46,7 +46,18 @@ export function Hero3DStage() {
             transform: "translate(-50%, -30%)",
             width: "1200px",
             height: "800px",
-            background: "radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at center, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute pointer-events-none opacity-40"
+          style={{
+            top: "20%",
+            right: "10%",
+            width: "600px",
+            height: "600px",
+            background: "radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 60%)",
+            filter: "blur(60px)",
           }}
         />
 
@@ -61,7 +72,7 @@ export function Hero3DStage() {
                 transition={{ duration: 0.6 }}
                 className="text-4xl md:text-5xl lg:text-[56px] font-medium text-white leading-[1.1] text-balance"
               >
-                Невидимая защита вашего бизнеса
+                Kage — тень, которая всегда с тобой
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -69,9 +80,9 @@ export function Hero3DStage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="mt-6 text-lg text-zinc-400"
               >
-                Как тень в ночи — мы защищаем ваши данные и конфиденциальность.
+                Премиальный чит для Hytale с невидимой защитой от античитов.
                 <br />
-                Передовые технологии кибербезопасности для современного бизнеса.
+                Японская философия скрытности в каждой функции.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -80,10 +91,10 @@ export function Hero3DStage() {
                 className="mt-8 flex items-center gap-6"
               >
                 <button className="px-5 py-2.5 bg-white text-zinc-900 font-medium rounded-lg hover:bg-zinc-100 transition-colors text-sm">
-                  Получить консультацию
+                  Получить доступ
                 </button>
                 <button className="text-zinc-300 font-medium hover:text-white transition-colors flex items-center gap-2 text-sm">
-                  <span className="text-zinc-500">Новинка:</span> Zero-Trust архитектура
+                  <span className="text-zinc-500">Обновление:</span> Stealth Mode 2.0
                   <span aria-hidden="true">→</span>
                 </button>
               </motion.div>

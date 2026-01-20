@@ -1,9 +1,11 @@
-import { motion } from "framer-motion"
-import { ChevronRight, Plus } from "lucide-react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { ChevronRight } from "lucide-react"
+import Icon from "@/components/ui/icon"
+import { useRef } from "react"
 
 const featureCards = [
   {
-    title: "Планирование спринтов",
+    title: "ESP / Wallhack",
     illustration: (
       <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-lg">
         <svg
@@ -51,7 +53,7 @@ const featureCards = [
     ),
   },
   {
-    title: "Управление итерациями",
+    title: "Aimbot / Triggerbot",
     illustration: (
       <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
         <img
@@ -64,7 +66,7 @@ const featureCards = [
     ),
   },
   {
-    title: "Когда важна точность",
+    title: "Fly / Speed / NoClip",
     illustration: (
       <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
         <img
@@ -79,8 +81,21 @@ const featureCards = [
 ]
 
 export function FeatureCardsSection() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  })
+  
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8])
+
   return (
-    <div className="relative z-20 py-40" style={{ backgroundColor: "#09090B" }}>
+    <motion.div 
+      ref={sectionRef}
+      style={{ opacity, scale }}
+      className="relative z-20 py-40" 
+    >
       <div
         className="absolute top-0 left-0 right-0 pointer-events-none"
         style={{
@@ -105,7 +120,7 @@ export function FeatureCardsSection() {
                 lineHeight: 1.1,
               }}
             >
-              Создан для современных команд
+              Функционал для доминации
             </motion.h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -115,10 +130,10 @@ export function FeatureCardsSection() {
               className="max-w-md"
             >
               <p className="text-zinc-400 leading-relaxed">
-                Orbit основан на практиках и принципах, которые отличают лучшие продуктовые команды:
-                фокус на главном, быстрое исполнение и внимание к качеству.{" "}
+                Kage создан для тех, кто ценит превосходство и скрытность.
+                Продвинутые функции, невидимая защита и японская философия точности.{" "}
                 <a href="#" className="text-white inline-flex items-center gap-1 hover:underline">
-                  Перейти на Orbit <ChevronRight className="w-4 h-4" />
+                  Подробнее о функциях <ChevronRight className="w-4 h-4" />
                 </a>
               </p>
             </motion.div>
@@ -129,41 +144,63 @@ export function FeatureCardsSection() {
             {featureCards.map((card, index) => (
               <motion.div
                 key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                className="bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer group overflow-hidden relative flex flex-col justify-end"
+                initial={{ opacity: 0, y: 40, rotateX: 25 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.2 + index * 0.15,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.02,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                className="bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700 cursor-pointer group overflow-hidden relative flex flex-col justify-end backdrop-blur-sm"
                 style={{
                   aspectRatio: "336 / 360",
                   borderRadius: "30px",
                   height: "360px",
                   isolation: "isolate",
+                  boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.5)",
+                  transformStyle: "preserve-3d",
+                  perspective: "1000px"
                 }}
               >
-                <div
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ mixBlendMode: "overlay" }}
+                />
+                <motion.div
                   className="absolute top-0 left-0 w-full flex"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                   style={{
                     maskImage: "linear-gradient(#000 70%, transparent 90%)",
                     WebkitMaskImage: "linear-gradient(#000 70%, transparent 90%)",
                   }}
                 >
                   {card.illustration}
-                </div>
+                </motion.div>
                 <div
                   className="relative z-10 flex items-center justify-between w-full"
                   style={{ padding: "0 24px 40px", gap: "16px" }}
                 >
-                  <h3 className="text-white font-medium text-lg leading-tight">{card.title}</h3>
-                  <div className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-500 group-hover:border-zinc-500 group-hover:text-zinc-300 transition-colors flex-shrink-0">
-                    <Plus className="w-4 h-4" />
-                  </div>
+                  <h3 className="text-white font-medium text-lg leading-tight group-hover:text-purple-300 transition-colors duration-300">{card.title}</h3>
+                  <motion.div 
+                    className="w-10 h-10 rounded-full bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center text-zinc-500 group-hover:bg-purple-900/30 group-hover:border-purple-500/50 group-hover:text-purple-300 transition-all duration-300 flex-shrink-0"
+                    whileHover={{ rotate: 90 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Icon name="Sparkles" className="w-4 h-4" />
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
