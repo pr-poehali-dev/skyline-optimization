@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
+import { useState } from "react"
 import Icon from "@/components/ui/icon"
+import { PurchaseModal } from "./PurchaseModal"
 
 const plans = [
   {
@@ -55,6 +57,8 @@ const plans = [
 ]
 
 export function PricingSection() {
+  const [selectedPlan, setSelectedPlan] = useState<typeof plans[0] | null>(null)
+
   return (
     <section id="pricing" className="relative py-32 overflow-hidden" style={{ backgroundColor: "#09090B" }}>
       <div className="absolute inset-0 pointer-events-none">
@@ -149,6 +153,7 @@ export function PricingSection() {
                 </ul>
 
                 <motion.button
+                  onClick={() => setSelectedPlan(plan)}
                   whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.95 }}
                   className={`w-full py-5 rounded-2xl font-black text-lg text-white relative overflow-hidden group ${
@@ -190,6 +195,12 @@ export function PricingSection() {
           </div>
         </motion.div>
       </div>
+
+      <PurchaseModal
+        isOpen={!!selectedPlan}
+        onClose={() => setSelectedPlan(null)}
+        plan={selectedPlan || plans[0]}
+      />
     </section>
   )
 }
