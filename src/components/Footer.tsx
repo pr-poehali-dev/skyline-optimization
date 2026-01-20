@@ -1,31 +1,38 @@
+import Icon from "@/components/ui/icon"
+
 export function Footer() {
   const footerLinks = {
-    "Возможности": ["Планирование", "Разработка", "Аналитика", "Запросы клиентов", "Orbit Asks", "Безопасность", "Мобильное приложение"],
-    "Продукт": ["Тарифы", "Методология", "Интеграции", "История изменений", "Документация", "Скачать", "Перейти на Orbit"],
-    "Компания": ["О нас", "Клиенты", "Карьера", "Новости", "README", "Качество", "Бренд"],
-    "Ресурсы": ["Разработчикам", "Статус", "Стартапам", "Сообщить об уязвимости", "DPA", "Конфиденциальность", "Условия"],
-    "Связаться": ["Контакты", "Сообщество", "X (Twitter)", "GitHub", "YouTube"],
+    "Функции": ["Combat", "Visuals", "Movement", "Stealth", "Все функции"],
+    "Информация": ["Тарифы", "Обновления", "FAQ", "Статус серверов"],
+    "Поддержка": ["Discord", "Telegram", "Документация", "Гайды"],
+    "Правовая информация": ["Условия использования", "Политика конфиденциальности", "Возврат средств"],
   }
 
   return (
     <footer className="border-t border-zinc-800 py-16 px-6" style={{ backgroundColor: "#09090B" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
-          {/* Logo */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           <div className="col-span-2 md:col-span-1">
-            <svg width="20" height="20" viewBox="0 0 100 100" fill="none" className="text-white">
-              <path
-                d="M20 30 L50 10 L80 30 L80 70 L50 90 L20 70 Z"
-                fill="currentColor"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-              <path d="M50 10 L50 50 L20 30" fill="#09090B" />
-              <path d="M50 50 L80 70 L50 90" fill="#09090B" />
-            </svg>
+            <div className="flex items-center gap-2 mb-4">
+              <Icon name="Eclipse" className="w-6 h-6 text-white" />
+              <span className="text-white font-bold text-xl tracking-wider">KAGE</span>
+            </div>
+            <p className="text-zinc-500 text-sm mb-6">
+              Премиальный чит для Hytale с невидимой защитой от античитов.
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-colors">
+                <Icon name="MessageCircle" className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-colors">
+                <Icon name="Send" className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-colors">
+                <Icon name="Youtube" className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
-          {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h3 className="text-white font-medium text-sm mb-4">{category}</h3>
@@ -40,6 +47,14 @@ export function Footer() {
               </ul>
             </div>
           ))}
+        </div>
+
+        <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
+          <p>© 2024 KAGE. Все права защищены.</p>
+          <p className="flex items-center gap-2">
+            <Icon name="Shield" className="w-4 h-4 text-green-400" />
+            Безопасная оплата • Мгновенная активация
+          </p>
         </div>
       </div>
     </footer>

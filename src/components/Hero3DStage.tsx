@@ -2,11 +2,9 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { DashboardMockup } from "./DashboardMockup"
 import { Navbar } from "./Navbar"
-import { LogoCloud } from "./LogoCloud"
-import { FeatureCardsSection } from "./FeatureCardsSection"
-import { AISection } from "./AISection"
-import { ProductDirectionSection } from "./ProductDirectionSection"
-import { WorkflowsSection } from "./WorkflowsSection"
+import { FeaturesSection } from "./FeaturesSection"
+import { SecuritySection } from "./SecuritySection"
+import { PricingSection } from "./PricingSection"
 import { CTASection } from "./CTASection"
 import { Footer } from "./Footer"
 
@@ -170,11 +168,9 @@ export function Hero3DStage() {
             </div>
           </div>
 
-          <LogoCloud />
-          <FeatureCardsSection />
-          <AISection />
-          <ProductDirectionSection />
-          <WorkflowsSection />
+          <FeaturesSection />
+          <SecuritySection />
+          <PricingSection />
           <CTASection />
           <Footer />
         </div>
