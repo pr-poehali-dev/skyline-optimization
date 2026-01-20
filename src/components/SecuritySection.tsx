@@ -68,10 +68,8 @@ export function SecuritySection() {
             Технология{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 animate-pulse">KAGE</span>
           </h2>
-          <p className="text-zinc-300 text-xl max-w-3xl mx-auto font-medium">
-            🌙 Наша система защиты основана на японской философии невидимости.<br />
-            ⚡ Ты всегда на шаг впереди античитов.
-          </p>
+          <p className="text-zinc-300 text-xl max-w-3xl mx-auto font-medium">Наша система защиты основана на японской философии невидимости.
+Ты всегда на шаг впереди античитов.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-20">
