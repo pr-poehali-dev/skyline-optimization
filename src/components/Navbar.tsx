@@ -15,7 +15,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-purple-500/20 bg-[#09090B]/90 backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-purple-500/20 bg-[#09090B]/90 backdrop-blur-xl">
         <div className="w-full flex justify-center px-6 py-4">
           <div className="w-full max-w-4xl flex items-center justify-between">
             <div className="flex items-center gap-3">
