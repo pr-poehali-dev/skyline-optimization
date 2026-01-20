@@ -1,11 +1,15 @@
+import { useState } from "react"
 import Icon from "@/components/ui/icon"
+import { TermsModal } from "./TermsModal"
+import { PrivacyModal } from "./PrivacyModal"
 
 export function Footer() {
+  const [termsOpen, setTermsOpen] = useState(false)
+  const [privacyOpen, setPrivacyOpen] = useState(false)
+
   const footerLinks = {
-    "Функции": ["Combat", "Visuals", "Movement", "Stealth", "Все функции"],
-    "Информация": ["Тарифы", "Обновления", "FAQ", "Статус серверов"],
-    "Поддержка": ["Discord", "Telegram", "Документация", "Гайды"],
-    "Правовая информация": ["Условия использования", "Политика конфиденциальности", "Возврат средств"],
+    "Информация": ["Тарифы", "Обновления", "FAQ"],
+    "Поддержка": ["Discord", "Telegram"],
   }
 
   return (
@@ -43,7 +47,16 @@ export function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">
+                    <a 
+                      href={link === 'FAQ' ? '#faq' : link === 'Тарифы' ? '#pricing' : '#'}
+                      onClick={(e) => {
+                        if (link === 'FAQ' || link === 'Тарифы') {
+                          e.preventDefault()
+                          document.getElementById(link === 'FAQ' ? 'faq' : 'pricing')?.scrollIntoView({ behavior: 'smooth' })
+                        }
+                      }}
+                      className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+                    >
                       {link}
                     </a>
                   </li>
@@ -51,6 +64,28 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
+          <div>
+            <h3 className="text-white font-medium text-sm mb-4">Правовая информация</h3>
+            <ul className="space-y-3">
+              <li>
+                <button 
+                  onClick={() => setTermsOpen(true)}
+                  className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm text-left"
+                >
+                  Условия использования
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => setPrivacyOpen(true)}
+                  className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm text-left"
+                >
+                  Политика конфиденциальности
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
@@ -61,6 +96,9 @@ export function Footer() {
           </p>
         </div>
       </div>
+
+      <TermsModal isOpen={termsOpen} onClose={() => setTermsOpen(false)} />
+      <PrivacyModal isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} />
     </footer>
   )
 }

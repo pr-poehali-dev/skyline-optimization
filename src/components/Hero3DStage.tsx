@@ -6,6 +6,7 @@ import { FeaturesSection } from "./FeaturesSection"
 import { SecuritySection } from "./SecuritySection"
 import { VideoSection } from "./VideoSection"
 import { PricingSection } from "./PricingSection"
+import { FAQSection } from "./FAQSection"
 import { AuthSection } from "./AuthSection"
 import { CTASection } from "./CTASection"
 import { Footer } from "./Footer"
@@ -221,6 +222,7 @@ export function Hero3DStage() {
           <VideoSection />
           <SecuritySection />
           <PricingSection />
+          <FAQSection />
           <AuthSection />
           <CTASection />
           <Footer />
