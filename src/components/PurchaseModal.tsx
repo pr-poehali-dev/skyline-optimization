@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { createPortal } from "react-dom"
 import Icon from "@/components/ui/icon"
 
 interface PurchaseModalProps {
@@ -43,6 +44,17 @@ export function PurchaseModal({ isOpen, onClose, plan: initialPlan }: PurchaseMo
 
   const selectedPlan = plans[selectedPlanIndex]
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsProcessing(true)
@@ -54,10 +66,10 @@ export function PurchaseModal({ isOpen, onClose, plan: initialPlan }: PurchaseMo
     onClose()
   }
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -232,4 +244,6 @@ export function PurchaseModal({ isOpen, onClose, plan: initialPlan }: PurchaseMo
       )}
     </AnimatePresence>
   )
+
+  return createPortal(modalContent, document.body)
 }
