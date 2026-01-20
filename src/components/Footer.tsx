@@ -13,22 +13,26 @@ export function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <Icon name="Eclipse" className="w-6 h-6 text-white" />
-              <span className="text-white font-bold text-xl tracking-wider">KAGE</span>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="https://cdn.poehali.dev/files/e983c995-d981-4b7a-b0ff-0fc5f17314b9.png" 
+                alt="KAGE Logo" 
+                className="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]" 
+              />
+              <span className="text-white font-black text-2xl tracking-wider bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">KAGE</span>
             </div>
-            <p className="text-zinc-500 text-sm mb-6">
-              Премиальный чит для Hytale с невидимой защитой от античитов.
+            <p className="text-zinc-400 text-sm mb-6 font-medium">
+              🐺 Премиальный чит для Hytale с невидимой защитой от античитов.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-colors">
-                <Icon name="MessageCircle" className="w-5 h-5" />
+              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-all hover:scale-125">
+                <Icon name="MessageCircle" className="w-6 h-6" />
               </a>
-              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-colors">
-                <Icon name="Send" className="w-5 h-5" />
+              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-all hover:scale-125">
+                <Icon name="Send" className="w-6 h-6" />
               </a>
-              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-colors">
-                <Icon name="Youtube" className="w-5 h-5" />
+              <a href="#" className="text-zinc-500 hover:text-purple-400 transition-all hover:scale-125">
+                <Icon name="Youtube" className="w-6 h-6" />
               </a>
             </div>
           </div>

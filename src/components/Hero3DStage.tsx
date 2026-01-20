@@ -35,27 +35,39 @@ export function Hero3DStage() {
       <section className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "#09090B" }}>
         <Navbar />
 
-        {/* Japanese-inspired glow */}
+        {/* Anime-style glows */}
         <div
           className="absolute pointer-events-none"
           style={{
-            top: "50%",
+            top: "30%",
             left: "50%",
-            transform: "translate(-50%, -30%)",
-            width: "1200px",
-            height: "800px",
-            background: "radial-gradient(ellipse at center, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%)",
+            transform: "translate(-50%, -50%)",
+            width: "1400px",
+            height: "1000px",
+            background: "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.25) 0%, rgba(236, 72, 153, 0.15) 40%, transparent 70%)",
+            filter: "blur(80px)",
           }}
         />
         <div
-          className="absolute pointer-events-none opacity-40"
+          className="absolute pointer-events-none"
           style={{
-            top: "20%",
-            right: "10%",
-            width: "600px",
-            height: "600px",
-            background: "radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 60%)",
-            filter: "blur(60px)",
+            top: "10%",
+            right: "5%",
+            width: "700px",
+            height: "700px",
+            background: "radial-gradient(circle at center, rgba(59, 130, 246, 0.2) 0%, transparent 60%)",
+            filter: "blur(100px)",
+          }}
+        />
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            bottom: "20%",
+            left: "10%",
+            width: "500px",
+            height: "500px",
+            background: "radial-gradient(circle at center, rgba(236, 72, 153, 0.2) 0%, transparent 60%)",
+            filter: "blur(80px)",
           }}
         />
 
@@ -64,37 +76,62 @@ export function Hero3DStage() {
           {/* Hero text - contained and centered */}
           <div className="w-full flex justify-center px-6 mt-16">
             <div className="w-full max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-full px-6 py-3 mb-6 backdrop-blur-sm"
+              >
+                <img 
+                  src="https://cdn.poehali.dev/files/e983c995-d981-4b7a-b0ff-0fc5f17314b9.png" 
+                  alt="Wolf" 
+                  className="w-6 h-6 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" 
+                />
+                <span className="text-purple-300 font-bold text-sm tracking-wide">Твой хищник в Hytale</span>
+              </motion.div>
+              
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-4xl md:text-5xl lg:text-[56px] font-medium text-white leading-[1.1] text-balance"
+                className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] text-balance"
               >
-                Kage — тень, которая всегда с тобой
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white">KAGE</span>
+                {" "}—{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+                  тень, которая всегда с тобой
+                </span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-6 text-lg text-zinc-400"
+                className="mt-8 text-xl text-zinc-300 font-medium max-w-3xl"
               >
-                Премиальный чит для Hytale с невидимой защитой от античитов.
+                🐺 Премиальный чит для Hytale с <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">невидимой защитой</span> от античитов.
                 <br />
-                Японская философия скрытности в каждой функции.
+                ⚡ Японская философия скрытности в каждой функции.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-8 flex items-center gap-6"
+                className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6"
               >
-                <button className="px-5 py-2.5 bg-white text-zinc-900 font-medium rounded-lg hover:bg-zinc-100 transition-colors text-sm">
-                  Получить доступ
-                </button>
-                <button className="text-zinc-300 font-medium hover:text-white transition-colors flex items-center gap-2 text-sm">
-                  <span className="text-zinc-500">Обновление:</span> Stealth Mode 2.0
-                  <span aria-hidden="true">→</span>
-                </button>
+                <motion.button
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(168, 85, 247, 0.6)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black text-lg rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all shadow-lg shadow-purple-500/50 relative overflow-hidden group"
+                >
+                  <span className="relative z-10">🔥 Купить подписку</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.button>
+                <div className="flex items-center gap-3 text-zinc-300">
+                  <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  <span className="font-medium">Обновление:</span>
+                  <span className="text-purple-400 font-bold">Stealth Mode 2.0</span>
+                  <span>✨</span>
+                </div>
               </motion.div>
             </div>
           </div>
