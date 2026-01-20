@@ -1,66 +1,79 @@
 import { motion } from "framer-motion"
+import { useState } from "react"
 import Icon from "@/components/ui/icon"
 
 const featureCategories = [
   {
-    category: "⚔️ Combat",
+    id: "combat",
+    category: "Combat",
     icon: "Swords",
     color: "from-red-500/30 to-orange-500/30",
     borderColor: "border-red-400/50",
-    glowColor: "shadow-red-500/50",
-    emoji: "🔥",
+    emoji: "⚔️",
     features: [
       { name: "Aimbot", description: "Автоматическое наведение на противников", icon: "Target" },
       { name: "Triggerbot", description: "Автоматическая стрельба при наведении", icon: "Crosshair" },
       { name: "Kill Aura", description: "Автоматическая атака вокруг персонажа", icon: "Sword" },
       { name: "Velocity", description: "Уменьшение отбрасывания от ударов", icon: "Wind" },
+      { name: "AutoClicker", description: "Автоматические клики с регулируемой скоростью", icon: "MousePointerClick" },
+      { name: "Reach", description: "Увеличение дальности атаки", icon: "Move" },
     ]
   },
   {
-    category: "👁️ Visuals",
+    id: "visuals",
+    category: "Visuals",
     icon: "Eye",
     color: "from-purple-500/30 to-pink-500/30",
     borderColor: "border-purple-400/50",
-    glowColor: "shadow-purple-500/50",
-    emoji: "✨",
+    emoji: "👁️",
     features: [
       { name: "ESP / Wallhack", description: "Видимость игроков сквозь стены", icon: "Scan" },
       { name: "Tracers", description: "Линии к противникам", icon: "TrendingUp" },
       { name: "Chest ESP", description: "Показ сундуков и предметов", icon: "Package" },
       { name: "Fullbright", description: "Полная яркость в темноте", icon: "Sun" },
+      { name: "X-Ray", description: "Прозрачность блоков для поиска руды", icon: "Eye" },
+      { name: "Nametags", description: "Отображение имён и здоровья игроков", icon: "Tag" },
     ]
   },
   {
-    category: "⚡ Movement",
+    id: "movement",
+    category: "Movement",
     icon: "Zap",
     color: "from-blue-500/30 to-cyan-500/30",
     borderColor: "border-blue-400/50",
-    glowColor: "shadow-blue-500/50",
-    emoji: "💨",
+    emoji: "⚡",
     features: [
       { name: "Fly", description: "Полёт в любом направлении", icon: "Plane" },
       { name: "Speed", description: "Увеличение скорости передвижения", icon: "Gauge" },
       { name: "NoClip", description: "Прохождение сквозь блоки", icon: "Ghost" },
       { name: "Spider", description: "Лазание по стенам", icon: "Mountain" },
+      { name: "Jesus", description: "Ходьба по воде", icon: "Waves" },
+      { name: "Step", description: "Моментальный подъём на блоки", icon: "ArrowUp" },
     ]
   },
   {
-    category: "🥷 Stealth",
+    id: "stealth",
+    category: "Stealth",
     icon: "Ghost",
     color: "from-zinc-500/30 to-slate-500/30",
     borderColor: "border-zinc-400/50",
-    glowColor: "shadow-zinc-500/50",
-    emoji: "🌙",
+    emoji: "🥷",
     features: [
       { name: "AntiCheat Bypass", description: "Защита от обнаружения", icon: "ShieldCheck" },
       { name: "Stealth Mode", description: "Скрытие активных функций", icon: "EyeOff" },
       { name: "Panic Key", description: "Мгновенное отключение", icon: "AlertTriangle" },
       { name: "Stream Proof", description: "Защита от обнаружения на стримах", icon: "Video" },
+      { name: "AntiKick", description: "Защита от кика с сервера", icon: "Shield" },
+      { name: "Freecam", description: "Свободная камера без движения персонажа", icon: "Camera" },
     ]
   }
 ]
 
 export function FeaturesSection() {
+  const [activeCategory, setActiveCategory] = useState("combat")
+
+  const activeCategoryData = featureCategories.find(cat => cat.id === activeCategory) || featureCategories[0]
+
   return (
     <section id="features" className="relative py-32 overflow-hidden" style={{ backgroundColor: "#09090B" }}>
       <div className="absolute inset-0 pointer-events-none">
@@ -75,19 +88,19 @@ export function FeaturesSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <motion.div 
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
             className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-full px-6 py-3 mb-6"
           >
             <span className="text-3xl">⚡</span>
             <span className="text-purple-300 font-bold">Полный арсенал</span>
           </motion.div>
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-            Все, что нужно для{" "}
+            Каждая{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-pulse">
-              доминации
+              детали
             </span>
           </h2>
           <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">
@@ -95,61 +108,75 @@ export function FeaturesSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {featureCategories.map((category, idx) => (
-            <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 50, rotateX: 20 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              whileHover={{ y: -12, scale: 1.03, rotateZ: 1, transition: { duration: 0.2 } }}
-              className={`relative bg-gradient-to-br ${category.color} backdrop-blur-xl border-2 ${category.borderColor} rounded-3xl p-10 overflow-hidden group cursor-pointer shadow-2xl ${category.glowColor} hover:shadow-3xl`}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center gap-3 mb-12 flex-wrap"
+        >
+          {featureCategories.map((category) => (
+            <motion.button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.95 }}
+              className={`flex items-center gap-3 px-6 py-4 rounded-2xl font-bold text-lg transition-all ${
+                activeCategory === category.id
+                  ? `bg-gradient-to-r ${category.color} border-2 ${category.borderColor} text-white shadow-xl`
+                  : 'bg-zinc-900/50 border-2 border-zinc-700/50 text-zinc-400 hover:text-white hover:border-zinc-600'
+              }`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="absolute top-0 right-0 text-8xl opacity-5 group-hover:opacity-10 transition-opacity">{category.emoji}</div>
-              
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-4">
+              <span className="text-2xl">{category.emoji}</span>
+              <span>{category.category}</span>
+            </motion.button>
+          ))}
+        </motion.div>
+
+        <motion.div
+          key={activeCategory}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="max-w-6xl mx-auto"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {activeCategoryData.features.map((feature, idx) => (
+              <motion.div
+                key={feature.name}
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                whileHover={{ y: -8, scale: 1.03, transition: { duration: 0.2 } }}
+                className={`relative bg-gradient-to-br ${activeCategoryData.color} backdrop-blur-xl border-2 ${activeCategoryData.borderColor} rounded-3xl p-8 overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute -top-10 -right-10 text-9xl opacity-5 group-hover:opacity-10 transition-opacity">{activeCategoryData.emoji}</div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
                     <motion.div 
                       whileHover={{ rotate: 360, scale: 1.2, transition: { duration: 0.4 } }}
-                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${category.color} border-2 ${category.borderColor} flex items-center justify-center shadow-xl ${category.glowColor}`}
+                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${activeCategoryData.color} border-2 ${activeCategoryData.borderColor} flex items-center justify-center shadow-lg`}
                     >
-                      <Icon name={category.icon} className="w-8 h-8 text-white" />
+                      <Icon name={feature.icon} className="w-8 h-8 text-white" />
                     </motion.div>
-                    <h3 className="text-3xl font-black text-white">{category.category}</h3>
                   </div>
-                  <span className="text-4xl group-hover:scale-125 transition-transform">{category.emoji}</span>
+
+                  <h3 className="text-2xl font-black text-white mb-3 group-hover:text-purple-200 transition-colors">{feature.name}</h3>
+                  <p className="text-zinc-300 leading-relaxed font-medium text-sm">{feature.description}</p>
+
+                  <div className="mt-6 flex items-center gap-2 text-xs text-zinc-400">
+                    <Icon name="Check" className="w-4 h-4 text-green-400" />
+                    <span>Minecraft 1.16.5+</span>
+                  </div>
                 </div>
 
-                <div className="space-y-5">
-                  {category.features.map((feature, featureIdx) => (
-                    <motion.div
-                      key={feature.name}
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 + featureIdx * 0.05, duration: 0.3 }}
-                      whileHover={{ x: 10, scale: 1.05, transition: { duration: 0.15 } }}
-                      className="flex items-start gap-4 bg-black/20 rounded-xl p-4 border border-white/5 hover:border-white/20 hover:bg-black/30 group/item"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-400/20 to-emerald-400/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
-                        <Icon name={feature.icon} className="w-4 h-4 text-green-400" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-white font-bold text-lg group-hover/item:text-purple-300 transition-colors">{feature.name}</h4>
-                        <p className="text-zinc-400 text-sm mt-1">{feature.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-3xl group-hover:scale-150 group-hover:rotate-90 transition-all duration-1000" />
-            </motion.div>
-          ))}
-        </div>
+                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-all duration-500" />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   )
