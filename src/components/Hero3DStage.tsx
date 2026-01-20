@@ -117,9 +117,9 @@ export function Hero3DStage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="mt-8 text-xl text-zinc-300 font-medium max-w-3xl"
               >
-                🐺 Премиальный чит для Hytale с <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">невидимой защитой</span> от античитов.
+                Премиальный чит для Hytale с <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">невидимой защитой</span> от античитов.
                 <br />
-                ⚡ Японская философия скрытности в каждой функции.
+                Японская философия скрытности в каждой функции.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -133,7 +133,7 @@ export function Hero3DStage() {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black text-lg rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all shadow-lg shadow-purple-500/50 relative overflow-hidden group"
                 >
-                  <span className="relative z-10">🔥 Купить подписку</span>
+                  <span className="relative z-10">Купить подписку</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </motion.button>
                 <div className="flex items-center gap-3 text-zinc-300">

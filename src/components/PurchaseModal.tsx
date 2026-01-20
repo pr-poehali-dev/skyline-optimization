@@ -5,7 +5,7 @@ import Icon from "@/components/ui/icon"
 interface PurchaseModalProps {
   isOpen: boolean
   onClose: () => void
-  plan: {
+  plan?: {
     name: string
     price: string
     period: string
@@ -13,9 +13,37 @@ interface PurchaseModalProps {
   }
 }
 
-export function PurchaseModal({ isOpen, onClose, plan }: PurchaseModalProps) {
+const plans = [
+  {
+    name: "1 Неделя",
+    price: "799",
+    period: "неделя",
+    description: "Оптимальный выбор",
+    discount: null
+  },
+  {
+    name: "2 Недели",
+    price: "1499",
+    period: "2 недели",
+    description: "Выгодное предложение",
+    discount: "Скидка 6%"
+  },
+  {
+    name: "1 Месяц",
+    price: "1999",
+    period: "месяц",
+    description: "Максимальная выгода",
+    discount: "Скидка 20%"
+  }
+]
+
+export function PurchaseModal({ isOpen, onClose, plan: initialPlan }: PurchaseModalProps) {
+  const [selectedPlanIndex, setSelectedPlanIndex] = useState(initialPlan ? 
+    plans.findIndex(p => p.name === initialPlan.name) : 0)
   const [email, setEmail] = useState("")
   const [isProcessing, setIsProcessing] = useState(false)
+
+  const selectedPlan = plans[selectedPlanIndex]
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -62,34 +90,72 @@ export function PurchaseModal({ isOpen, onClose, plan }: PurchaseModalProps) {
 
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-2 border-purple-400/50 mb-6">
-                      <span className="text-4xl">🛒</span>
+                      <img 
+                        src="https://cdn.poehali.dev/files/e983c995-d981-4b7a-b0ff-0fc5f17314b9.png" 
+                        alt="KAGE" 
+                        className="w-12 h-12 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" 
+                      />
                     </div>
                     <h2 className="text-3xl font-black text-white mb-2">
-                      Покупка подписки
+                      Выбери тариф
                     </h2>
                     <p className="text-zinc-400 font-medium">
-                      {plan.description}
+                      Мгновенная активация после оплаты
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-2xl p-6 mb-8">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-zinc-300 font-medium">Тариф:</span>
-                      <span className="text-white font-black text-xl">{plan.name}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-zinc-300 font-medium">Стоимость:</span>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-white font-black text-3xl">{plan.price}</span>
-                        <span className="text-zinc-300 font-bold">₽</span>
-                      </div>
-                    </div>
+                  <div className="mb-8 space-y-3">
+                    {plans.map((plan, index) => (
+                      <motion.button
+                        key={plan.name}
+                        onClick={() => setSelectedPlanIndex(index)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className={`w-full p-5 rounded-2xl border-2 transition-all text-left relative overflow-hidden ${
+                          selectedPlanIndex === index
+                            ? 'bg-gradient-to-r from-purple-600/30 to-pink-600/30 border-purple-500'
+                            : 'bg-zinc-900/50 border-zinc-700 hover:border-zinc-600'
+                        }`}
+                      >
+                        {plan.discount && (
+                          <div className="absolute top-3 right-3 bg-green-500/20 border border-green-400/50 text-green-300 text-xs font-bold px-2 py-1 rounded-lg">
+                            {plan.discount}
+                          </div>
+                        )}
+                        
+                        <div className="flex items-center justify-between mb-2">
+                          <div>
+                            <h3 className="text-white font-black text-lg">{plan.name}</h3>
+                            <p className="text-zinc-400 text-sm font-medium">{plan.description}</p>
+                          </div>
+                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                            selectedPlanIndex === index
+                              ? 'border-purple-400 bg-purple-500'
+                              : 'border-zinc-600'
+                          }`}>
+                            {selectedPlanIndex === index && (
+                              <Icon name="Check" className="w-4 h-4 text-white" />
+                            )}
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-baseline gap-2">
+                          <span className={`text-3xl font-black ${
+                            selectedPlanIndex === index ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300' : 'text-white'
+                          }`}>
+                            {plan.price}
+                          </span>
+                          <span className="text-zinc-300 font-bold">₽</span>
+                          <span className="text-zinc-500 text-sm">/ {plan.period}</span>
+                        </div>
+                      </motion.button>
+                    ))}
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="email" className="block text-sm font-bold text-white mb-3">
-                        📧 Email для активации
+                        Email для активации
                       </label>
                       <input
                         type="email"
@@ -121,7 +187,7 @@ export function PurchaseModal({ isOpen, onClose, plan }: PurchaseModalProps) {
                         ) : (
                           <>
                             <Icon name="CreditCard" className="w-5 h-5" />
-                            Перейти к оплате
+                            Оплатить {selectedPlan.price} ₽
                           </>
                         )}
                       </span>
@@ -129,7 +195,7 @@ export function PurchaseModal({ isOpen, onClose, plan }: PurchaseModalProps) {
                     </motion.button>
                   </form>
 
-                  <div className="mt-8 flex items-center justify-center gap-6 text-xs text-zinc-400">
+                  <div className="mt-6 flex items-center justify-center gap-6 text-xs text-zinc-400">
                     <div className="flex items-center gap-1">
                       <Icon name="Shield" className="w-4 h-4 text-green-400" />
                       Безопасно
