@@ -8,8 +8,9 @@ export function Footer() {
   const [privacyOpen, setPrivacyOpen] = useState(false)
 
   const footerLinks = {
+    "О проекте": ["О нас", "Наша команда", "Блог"],
     "Информация": ["Тарифы", "Обновления", "FAQ"],
-    "Поддержка": ["Discord", "Telegram"],
+    "Поддержка": ["Discord", "Telegram", "Помощь"],
   }
 
   return (

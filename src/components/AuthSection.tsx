@@ -4,13 +4,12 @@ import Icon from "@/components/ui/icon"
 
 export function AuthSection() {
   const [isLogin, setIsLogin] = useState(true)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [nickname, setNickname] = useState("")
+  const [password, setPassword] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    alert(isLogin ? `Вход выполнен для ${email}` : `Регистрация прошла успешно! Проверьте ${email}`)
+    alert(isLogin ? `Вход выполнен для ${nickname}` : `Регистрация прошла успешно, ${nickname}!`)
   }
 
   return (
@@ -113,41 +112,21 @@ export function AuthSection() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  {!isLogin && (
-                    <div>
-                      <label htmlFor="nickname" className="block text-sm font-bold text-white mb-2">
-                        Minecraft никнейм
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          id="nickname"
-                          required={!isLogin}
-                          value={nickname}
-                          onChange={(e) => setNickname(e.target.value)}
-                          placeholder="Steve"
-                          className="w-full px-4 py-3 pl-12 bg-zinc-900/50 border-2 border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none transition-colors font-medium"
-                        />
-                        <Icon name="User" className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
-                      </div>
-                    </div>
-                  )}
-
                   <div>
-                    <label htmlFor="auth-email" className="block text-sm font-bold text-white mb-2">
-                      Email
+                    <label htmlFor="nickname" className="block text-sm font-bold text-white mb-2">
+                      Minecraft никнейм
                     </label>
                     <div className="relative">
                       <input
-                        type="email"
-                        id="auth-email"
+                        type="text"
+                        id="nickname"
                         required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your@email.com"
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
+                        placeholder="Steve"
                         className="w-full px-4 py-3 pl-12 bg-zinc-900/50 border-2 border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none transition-colors font-medium"
                       />
-                      <Icon name="Mail" className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                      <Icon name="User" className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
                     </div>
                   </div>
 
