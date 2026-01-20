@@ -4,7 +4,9 @@ import { DashboardMockup } from "./DashboardMockup"
 import { Navbar } from "./Navbar"
 import { FeaturesSection } from "./FeaturesSection"
 import { SecuritySection } from "./SecuritySection"
+import { VideoSection } from "./VideoSection"
 import { PricingSection } from "./PricingSection"
+import { AuthSection } from "./AuthSection"
 import { CTASection } from "./CTASection"
 import { Footer } from "./Footer"
 import { PurchaseModal } from "./PurchaseModal"
@@ -216,8 +218,10 @@ export function Hero3DStage() {
           </div>
 
           <FeaturesSection />
+          <VideoSection />
           <SecuritySection />
           <PricingSection />
+          <AuthSection />
           <CTASection />
           <Footer />
         </div>
