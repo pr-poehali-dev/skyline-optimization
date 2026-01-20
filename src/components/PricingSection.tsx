@@ -106,16 +106,16 @@ export function PricingSection() {
                   <button
                     key={plan.name}
                     onClick={() => setSelectedPlanIndex(idx)}
-                    className={`flex flex-col items-center transition-all ${
+                    className={`flex flex-col items-center transition-all duration-300 ease-in-out ${
                       selectedPlanIndex === idx ? 'scale-110' : 'scale-90 opacity-50'
                     }`}
                   >
-                    <div className={`w-5 h-5 rounded-full border-2 mb-2 ${
+                    <div className={`w-5 h-5 rounded-full border-2 mb-2 transition-all duration-300 ${
                       selectedPlanIndex === idx
                         ? 'border-purple-400 bg-purple-500 shadow-lg shadow-purple-500/50'
                         : 'border-zinc-600 bg-zinc-800'
                     }`} />
-                    <span className={`text-sm font-bold ${
+                    <span className={`text-sm font-bold transition-all duration-300 ${
                       selectedPlanIndex === idx ? 'text-white' : 'text-zinc-500'
                     }`}>
                       {plan.name === "1 Неделя" ? "Неделя" : plan.name === "2 Недели" ? "Две недели" : "Месяц"}
@@ -128,47 +128,47 @@ export function PricingSection() {
 
           <motion.div
             key={selectedPlanIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="relative rounded-3xl overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="relative rounded-2xl overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20" />
-            <div className="absolute inset-0 border-2 border-purple-500/50 rounded-3xl shadow-2xl shadow-purple-500/50" />
+            <div className="absolute inset-0 border-2 border-purple-500/50 rounded-2xl shadow-2xl shadow-purple-500/50" />
             
-            <div className="relative p-10 bg-zinc-900/70 backdrop-blur-xl">
+            <div className="relative p-6 bg-zinc-900/70 backdrop-blur-xl">
               {selectedPlan.discount && (
-                <div className="absolute top-6 right-6 bg-green-500/20 border border-green-400/50 text-green-300 text-sm font-bold px-4 py-2 rounded-xl">
+                <div className="absolute top-4 right-4 bg-green-500/20 border border-green-400/50 text-green-300 text-xs font-bold px-3 py-1 rounded-lg">
                   {selectedPlan.discount}
                 </div>
               )}
 
-              <div className="text-center mb-8">
-                <h3 className="text-4xl font-black text-white mb-3">{selectedPlan.name}</h3>
-                <p className="text-zinc-300 font-medium text-lg">{selectedPlan.description}</p>
+              <div className="text-center mb-4">
+                <h3 className="text-2xl font-black text-white mb-2">{selectedPlan.name}</h3>
+                <p className="text-zinc-300 font-medium text-sm">{selectedPlan.description}</p>
               </div>
 
-              <div className="text-center mb-10">
-                <div className="flex items-baseline justify-center gap-2 mb-2">
-                  <span className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">
+              <div className="text-center mb-6">
+                <div className="flex items-baseline justify-center gap-2 mb-1">
+                  <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">
                     {selectedPlan.price}
                   </span>
-                  <span className="text-zinc-300 text-3xl font-bold">₽</span>
+                  <span className="text-zinc-300 text-2xl font-bold">₽</span>
                 </div>
-                <p className="text-zinc-400 text-xl font-medium">за {selectedPlan.period}</p>
+                <p className="text-zinc-400 text-base font-medium">за {selectedPlan.period}</p>
               </div>
 
-              <ul className="space-y-4 mb-10 max-w-md mx-auto">
+              <ul className="space-y-2 mb-6 max-w-md mx-auto">
                 {selectedPlan.features.map((feature, featureIdx) => (
                   <motion.li
                     key={featureIdx}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: featureIdx * 0.1, duration: 0.3 }}
-                    className="flex items-center gap-4 text-zinc-200 font-medium bg-black/20 rounded-xl p-4 border border-white/5"
+                    transition={{ delay: featureIdx * 0.05, duration: 0.3, ease: "easeOut" }}
+                    className="flex items-center gap-3 text-zinc-200 font-medium bg-black/20 rounded-lg p-3 border border-white/5 text-sm"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-green-400/20 to-emerald-400/20 border border-green-400/40 flex items-center justify-center flex-shrink-0">
-                      <Icon name="Check" className="w-5 h-5 text-green-400" />
+                    <div className="w-5 h-5 rounded-md bg-gradient-to-br from-green-400/20 to-emerald-400/20 border border-green-400/40 flex items-center justify-center flex-shrink-0">
+                      <Icon name="Check" className="w-3 h-3 text-green-400" />
                     </div>
                     <span>{feature}</span>
                   </motion.li>
@@ -179,10 +179,10 @@ export function PricingSection() {
                 onClick={() => setIsPurchaseModalOpen(true)}
                 whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full py-6 rounded-2xl font-black text-xl text-white bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 shadow-2xl shadow-purple-500/60 hover:shadow-purple-500/80 transition-shadow duration-200 relative overflow-hidden group"
+                className="w-full py-4 rounded-xl font-black text-base text-white bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 shadow-2xl shadow-purple-500/60 hover:shadow-purple-500/80 transition-shadow duration-200 relative overflow-hidden group"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  <Icon name="ShoppingCart" className="w-6 h-6" />
+                  <Icon name="ShoppingCart" className="w-5 h-5" />
                   Купить сейчас
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />

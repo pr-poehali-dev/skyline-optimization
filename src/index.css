@@ -155,6 +155,10 @@
     display: none;
   }
 
+  input[type="range"].slider {
+    transition: background 0.3s ease-in-out;
+  }
+
   input[type="range"].slider::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
@@ -163,6 +167,11 @@
     background: linear-gradient(135deg, #a855f7, #ec4899);
     cursor: pointer;
     box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+    transition: transform 0.2s ease;
+  }
+
+  input[type="range"].slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
   }
 
   input[type="range"].slider::-moz-range-thumb {
@@ -173,5 +182,10 @@
     cursor: pointer;
     border: none;
     box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+    transition: transform 0.2s ease;
+  }
+
+  input[type="range"].slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
   }
 }
