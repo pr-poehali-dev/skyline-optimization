@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { useState } from "react"
 import Icon from "@/components/ui/icon"
 
 const allFeatures = [
@@ -333,17 +334,18 @@ const allFeatures = [
 ]
 
 const categoryInfo = {
-  "Combat": { emoji: "⚔️", title: "Боевые функции" },
-  "Visuals": { emoji: "👁️", title: "Визуальные функции" },
-  "Movement": { emoji: "⚡", title: "Функции передвижения" },
-  "World": { emoji: "🌍", title: "Взаимодействие с миром" },
-  "Stealth": { emoji: "🥷", title: "Скрытность" },
-  "Interface": { emoji: "⚙️", title: "Интерфейс" }
+  "Combat": { emoji: "⚔️", title: "Боевые", color: "from-red-500/30 to-orange-500/30", borderColor: "border-red-400/50" },
+  "Visuals": { emoji: "👁️", title: "Визуальные", color: "from-purple-500/30 to-pink-500/30", borderColor: "border-purple-400/50" },
+  "Movement": { emoji: "⚡", title: "Передвижение", color: "from-blue-500/30 to-cyan-500/30", borderColor: "border-blue-400/50" },
+  "World": { emoji: "🌍", title: "Мир", color: "from-green-500/30 to-emerald-500/30", borderColor: "border-green-400/50" },
+  "Stealth": { emoji: "🥷", title: "Скрытность", color: "from-zinc-500/30 to-slate-500/30", borderColor: "border-zinc-400/50" },
+  "Interface": { emoji: "⚙️", title: "Интерфейс", color: "from-yellow-500/30 to-amber-500/30", borderColor: "border-yellow-400/50" }
 }
 
 const categories = ["Combat", "Visuals", "Movement", "World", "Stealth", "Interface"]
 
 export function FeaturesSection() {
+  const [activeCategory, setActiveCategory] = useState("Combat")
   return (
     <section id="features" className="relative py-32 overflow-hidden" style={{ backgroundColor: "#09090B" }}>
       <div className="absolute inset-0 pointer-events-none">
@@ -377,7 +379,7 @@ export function FeaturesSection() {
               арсенал
             </span>
           </h2>
-          <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">Прокрути список и изучи все возможности</p>
+          <p className="text-zinc-300 text-xl max-w-2xl mx-auto font-medium">Выбери категорию и изучи возможности</p>
         </motion.div>
 
         <motion.div 
@@ -385,75 +387,78 @@ export function FeaturesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="flex justify-center gap-3 mb-12 flex-wrap"
+        >
+          {categories.map((category) => {
+            const info = categoryInfo[category]
+            return (
+              <motion.button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-base transition-all ${
+                  activeCategory === category
+                    ? `bg-gradient-to-r ${info.color} border-2 ${info.borderColor} text-white shadow-xl`
+                    : 'bg-zinc-900/50 border-2 border-zinc-700/50 text-zinc-400 hover:text-white hover:border-zinc-600'
+                }`}
+              >
+                <span className="text-xl">{info.emoji}</span>
+                <span>{info.title}</span>
+              </motion.button>
+            )
+          })}
+        </motion.div>
+
+        <motion.div 
+          key={activeCategory}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
           className="max-w-4xl mx-auto"
         >
           <div 
-            className="h-[600px] overflow-y-auto pr-4 space-y-8 scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-zinc-900/50"
+            className="h-[500px] overflow-y-auto pr-4 space-y-3 scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-zinc-900/50"
             style={{
               scrollbarWidth: 'thin',
               scrollbarColor: '#9333ea #18181b'
             }}
           >
-            {categories.map((category) => {
-              const categoryFeatures = allFeatures.filter(f => f.category === category)
-              const info = categoryInfo[category]
-              
-              return (
-                <div key={category} className="space-y-3">
+            {allFeatures.filter(f => f.category === activeCategory).map((feature, idx) => (
+              <motion.div
+                key={feature.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                whileHover={{ x: 8, scale: 1.02, transition: { duration: 0.2 } }}
+                className={`relative bg-gradient-to-r ${feature.color} backdrop-blur-xl border-2 ${feature.borderColor} rounded-2xl p-5 overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative z-10 flex items-center gap-4">
                   <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3 mb-4"
+                    whileHover={{ rotate: 360, scale: 1.1, transition: { duration: 0.4 } }}
+                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} border-2 ${feature.borderColor} flex items-center justify-center shadow-lg flex-shrink-0`}
                   >
-                    <span className="text-3xl">{info.emoji}</span>
-                    <h3 className="text-2xl font-black text-white">{info.title}</h3>
-                    <div className="flex-1 h-px bg-gradient-to-r from-purple-500/50 to-transparent" />
+                    <Icon name={feature.icon} className="w-7 h-7 text-white" />
                   </motion.div>
 
-                  {categoryFeatures.map((feature, idx) => (
-                    <motion.div
-                      key={feature.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.3, delay: idx * 0.02 }}
-                      whileHover={{ x: 8, scale: 1.02, transition: { duration: 0.2 } }}
-                      className={`relative bg-gradient-to-r ${feature.color} backdrop-blur-xl border-2 ${feature.borderColor} rounded-2xl p-5 overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl`}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      
-                      <div className="relative z-10 flex items-center gap-4">
-                        <motion.div 
-                          whileHover={{ rotate: 360, scale: 1.1, transition: { duration: 0.4 } }}
-                          className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} border-2 ${feature.borderColor} flex items-center justify-center shadow-lg flex-shrink-0`}
-                        >
-                          <Icon name={feature.icon} className="w-7 h-7 text-white" />
-                        </motion.div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-white font-black text-lg truncate mb-1">
+                      {feature.name}
+                    </h4>
+                    <p className="text-zinc-300 text-sm font-medium line-clamp-1">
+                      {feature.description}
+                    </p>
+                  </div>
 
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-white font-black text-lg truncate mb-1">
-                            {feature.name}
-                          </h4>
-                          <p className="text-zinc-300 text-sm font-medium line-clamp-1">
-                            {feature.description}
-                          </p>
-                        </div>
-
-                        <Icon name="ChevronRight" className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all flex-shrink-0" />
-                      </div>
-                    </motion.div>
-                  ))}
+                  <Icon name="ChevronRight" className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all flex-shrink-0" />
                 </div>
-              )
-            })}
+              </motion.div>
+            ))}
           </div>
 
-          <div className="mt-6 text-center">
-            <p className="text-zinc-400 text-sm font-medium">
-              И это только базовые возможности — каждая функция имеет множество настроек!
-            </p>
-          </div>
+
         </motion.div>
       </div>
     </section>

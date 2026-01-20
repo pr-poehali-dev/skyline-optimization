@@ -154,4 +154,24 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  input[type="range"].slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+  }
+
+  input[type="range"].slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+  }
 }
