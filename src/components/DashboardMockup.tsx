@@ -52,11 +52,20 @@ export function DashboardMockup() {
 
   return (
     <motion.div
-      className="w-full h-full bg-zinc-950 flex overflow-hidden"
+      className="w-full h-full bg-zinc-950 flex overflow-hidden relative"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url(https://www.escapistmagazine.com/wp-content/uploads/2026/01/Hytale-Update-Dinosaurs.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.15,
+        }}
+      />
       {/* Sidebar */}
       <motion.div
         className="w-[220px] h-full bg-zinc-900/80 border-r border-zinc-800/50 flex flex-col shrink-0"
