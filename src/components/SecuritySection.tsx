@@ -124,7 +124,7 @@ export function SecuritySection() {
               className="relative text-center p-8 bg-gradient-to-br from-zinc-900/80 to-purple-900/20 backdrop-blur-xl border-2 border-purple-500/30 rounded-2xl shadow-xl hover:shadow-purple-500/50 overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="absolute top-2 right-2 text-3xl">{stat.emoji}</div>
+              <div className="">{stat.emoji}</div>
               <div className="flex justify-center mb-4 relative z-10">
                 <motion.div 
                   whileHover={{ rotate: 360, transition: { duration: 0.4 } }}
